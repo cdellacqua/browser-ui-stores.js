@@ -65,3 +65,13 @@ orientation$.subscribe((orientation) => {
 	console.log(`Your screen is in ${orientation} mode`);
 });
 ```
+
+- Create a store from any media query:
+
+```ts
+import {makeMediaQueryStore} from 'browser-ui-stores';
+
+const prefersLightTheme$ = makeMediaQueryStore('(prefers-color-scheme: light)');
+console.log(prefersLightTheme$.value); // true or false depending on the browser/system settings.
+prefersLightTheme$.subscribe(console.log); // will print true or false immediately and every time the preference changes.
+```
