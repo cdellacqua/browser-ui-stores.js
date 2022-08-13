@@ -2,7 +2,7 @@
 	"name": "browser-ui-stores",
 	"camelCaseName": "browserUiStores",
 	"description": "A collection of stores that monitor the size, orientation, color scheme and scroll of the browser window.",
-	"version": "1.0.2",
+	"version": "2.0.0",
 	"type": "module",
 	"types": "dist/index.d.ts",
 	"main": "dist/index.cjs",
