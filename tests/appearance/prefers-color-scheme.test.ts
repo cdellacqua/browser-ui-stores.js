@@ -41,14 +41,14 @@ describe('"prefers color scheme" stores', () => {
 	});
 
 	it('checks the value of prefersColorScheme$', async () => {
-		expect(prefersColorScheme$.value).to.eq('light');
+		expect(prefersColorScheme$.content()).to.eq('light');
 		setColorScheme('dark');
-		expect(prefersColorScheme$.value).to.eq('dark');
+		expect(prefersColorScheme$.content()).to.eq('dark');
 	});
 
 	it('checks the value of prefersColorSchemeDefaultDark$', async () => {
-		expect(prefersColorSchemeDarkDefault$.value).to.eq('dark');
+		expect(prefersColorSchemeDarkDefault$.content()).to.eq('dark');
 		setColorScheme('light');
-		expect(prefersColorSchemeDarkDefault$.value).to.eq('light');
+		expect(prefersColorSchemeDarkDefault$.content()).to.eq('light');
 	});
 });

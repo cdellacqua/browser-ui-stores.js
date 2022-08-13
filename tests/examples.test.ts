@@ -7,7 +7,7 @@ describe('examples', () => {
 			'(prefers-color-scheme: light)',
 		);
 
-		expect(prefersLightTheme$.value).to.be.false;
+		expect(prefersLightTheme$.content()).to.be.false;
 		let actual: boolean | null = null;
 		prefersLightTheme$.subscribe((v) => (actual = v));
 		expect(actual).to.be.false;

@@ -24,9 +24,9 @@ describe('document visibility stores', () => {
 		sandbox.restore();
 	});
 	it('tests the visibility state', () => {
-		expect(documentVisible$.value).to.be.true;
+		expect(documentVisible$.content()).to.be.true;
 		setVisibility('hidden');
-		expect(documentVisible$.value).to.be.false;
+		expect(documentVisible$.content()).to.be.false;
 	});
 	it('tests the visibility state with an active subscription', () => {
 		let actual: boolean | undefined;

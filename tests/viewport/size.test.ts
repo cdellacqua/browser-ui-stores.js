@@ -49,39 +49,39 @@ describe('viewport size stores', () => {
 		sandbox.restore();
 	});
 	it('tests the non-passive version of viewportSize$', () => {
-		expect(viewportSize$.value).to.eqls({width: 0, height: 0});
+		expect(viewportSize$.content()).to.eqls({width: 0, height: 0});
 		setSize({width: 10, height: 10});
-		expect(viewportSize$.value).to.eqls({width: 10, height: 10});
+		expect(viewportSize$.content()).to.eqls({width: 10, height: 10});
 	});
 	it('tests the passive version of viewportSize$', async () => {
-		expect(viewportSizePassive$.value).to.eqls({width: 0, height: 0});
+		expect(viewportSizePassive$.content()).to.eqls({width: 0, height: 0});
 		setSize({width: 10, height: 10});
-		expect(viewportSizePassive$.value).to.eqls({width: 0, height: 0});
+		expect(viewportSizePassive$.content()).to.eqls({width: 0, height: 0});
 		await new Promise<void>((res) => setTimeout(res, 1000 / 60)); // approximating requestAnimationFrame to 1 / 60th of a second
-		expect(viewportSizePassive$.value).to.eqls({width: 10, height: 10});
+		expect(viewportSizePassive$.content()).to.eqls({width: 10, height: 10});
 	});
 	it('tests the non-passive version of innerWidth$', () => {
-		expect(innerWidth$.value).to.eqls(0);
+		expect(innerWidth$.content()).to.eqls(0);
 		setSize({width: 20, height: 30});
-		expect(innerWidth$.value).to.eqls(20);
+		expect(innerWidth$.content()).to.eqls(20);
 	});
 	it('tests the passive version of innerWidth$', async () => {
-		expect(innerWidthPassive$.value).to.eqls(0);
+		expect(innerWidthPassive$.content()).to.eqls(0);
 		setSize({width: 40, height: 50});
-		expect(innerWidthPassive$.value).to.eqls(0);
+		expect(innerWidthPassive$.content()).to.eqls(0);
 		await new Promise<void>((res) => setTimeout(res, 1000 / 60)); // approximating requestAnimationFrame to 1 / 60th of a second
-		expect(innerWidthPassive$.value).to.eqls(40);
+		expect(innerWidthPassive$.content()).to.eqls(40);
 	});
 	it('tests the non-passive version of innerHeight$', () => {
-		expect(innerHeight$.value).to.eqls(0);
+		expect(innerHeight$.content()).to.eqls(0);
 		setSize({width: 20, height: 30});
-		expect(innerHeight$.value).to.eqls(30);
+		expect(innerHeight$.content()).to.eqls(30);
 	});
 	it('tests the passive version of innerHeight$', async () => {
-		expect(innerHeightPassive$.value).to.eqls(0);
+		expect(innerHeightPassive$.content()).to.eqls(0);
 		setSize({width: 40, height: 50});
-		expect(innerHeightPassive$.value).to.eqls(0);
+		expect(innerHeightPassive$.content()).to.eqls(0);
 		await new Promise<void>((res) => setTimeout(res, 1000 / 60)); // approximating requestAnimationFrame to 1 / 60th of a second
-		expect(innerHeightPassive$.value).to.eqls(50);
+		expect(innerHeightPassive$.content()).to.eqls(50);
 	});
 });

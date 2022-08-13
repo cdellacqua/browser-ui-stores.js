@@ -363,7 +363,7 @@ a media query "matches".
 Example usage:
 ```ts
 const prefersLightTheme$ = makeMediaQueryStore('(prefers-color-scheme: light)');
-console.log(prefersLightTheme$.value); // true or false depending on the browser/system settings.
+console.log(prefersLightTheme$.content()); // true or false depending on the browser/system settings.
 
 prefersLightTheme$.subscribe(console.log); // will print true or false immediately and every time the preference changes.
 ```

@@ -49,39 +49,39 @@ describe('document size stores', () => {
 		sandbox.restore();
 	});
 	it('tests the non-passive version of bodyScrollSize$', () => {
-		expect(bodyScrollSize$.value).to.eqls({width: 0, height: 0});
+		expect(bodyScrollSize$.content()).to.eqls({width: 0, height: 0});
 		setSize({width: 10, height: 10});
-		expect(bodyScrollSize$.value).to.eqls({width: 10, height: 10});
+		expect(bodyScrollSize$.content()).to.eqls({width: 10, height: 10});
 	});
 	it('tests the passive version of bodyScrollSize$', async () => {
-		expect(bodyScrollSizePassive$.value).to.eqls({width: 0, height: 0});
+		expect(bodyScrollSizePassive$.content()).to.eqls({width: 0, height: 0});
 		setSize({width: 10, height: 10});
-		expect(bodyScrollSizePassive$.value).to.eqls({width: 0, height: 0});
+		expect(bodyScrollSizePassive$.content()).to.eqls({width: 0, height: 0});
 		await new Promise<void>((res) => setTimeout(res, 1000 / 60)); // approximating requestAnimationFrame to 1 / 60th of a second
-		expect(bodyScrollSizePassive$.value).to.eqls({width: 10, height: 10});
+		expect(bodyScrollSizePassive$.content()).to.eqls({width: 10, height: 10});
 	});
 	it('tests the non-passive version of bodyScrollWidth$', () => {
-		expect(bodyScrollWidth$.value).to.eqls(0);
+		expect(bodyScrollWidth$.content()).to.eqls(0);
 		setSize({width: 20, height: 30});
-		expect(bodyScrollWidth$.value).to.eqls(20);
+		expect(bodyScrollWidth$.content()).to.eqls(20);
 	});
 	it('tests the passive version of bodyScrollWidth$', async () => {
-		expect(bodyScrollWidthPassive$.value).to.eqls(0);
+		expect(bodyScrollWidthPassive$.content()).to.eqls(0);
 		setSize({width: 40, height: 50});
-		expect(bodyScrollWidthPassive$.value).to.eqls(0);
+		expect(bodyScrollWidthPassive$.content()).to.eqls(0);
 		await new Promise<void>((res) => setTimeout(res, 1000 / 60)); // approximating requestAnimationFrame to 1 / 60th of a second
-		expect(bodyScrollWidthPassive$.value).to.eqls(40);
+		expect(bodyScrollWidthPassive$.content()).to.eqls(40);
 	});
 	it('tests the non-passive version of bodyScrollHeight$', () => {
-		expect(bodyScrollHeight$.value).to.eqls(0);
+		expect(bodyScrollHeight$.content()).to.eqls(0);
 		setSize({width: 20, height: 30});
-		expect(bodyScrollHeight$.value).to.eqls(30);
+		expect(bodyScrollHeight$.content()).to.eqls(30);
 	});
 	it('tests the passive version of bodyScrollHeight$', async () => {
-		expect(bodyScrollHeightPassive$.value).to.eqls(0);
+		expect(bodyScrollHeightPassive$.content()).to.eqls(0);
 		setSize({width: 40, height: 50});
-		expect(bodyScrollHeightPassive$.value).to.eqls(0);
+		expect(bodyScrollHeightPassive$.content()).to.eqls(0);
 		await new Promise<void>((res) => setTimeout(res, 1000 / 60)); // approximating requestAnimationFrame to 1 / 60th of a second
-		expect(bodyScrollHeightPassive$.value).to.eqls(50);
+		expect(bodyScrollHeightPassive$.content()).to.eqls(50);
 	});
 });

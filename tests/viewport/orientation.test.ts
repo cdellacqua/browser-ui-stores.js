@@ -32,8 +32,8 @@ describe('orientation stores', () => {
 	});
 
 	it('checks the value', async () => {
-		expect(orientation$.value).to.eq('landscape');
+		expect(orientation$.content()).to.eq('landscape');
 		setOrientation('portrait');
-		expect(orientation$.value).to.eq('portrait');
+		expect(orientation$.content()).to.eq('portrait');
 	});
 });

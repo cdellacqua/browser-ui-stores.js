@@ -1,3 +1,3 @@
 import {documentVisible$} from './lib';
 
-console.log(documentVisible$.value);
+console.log(documentVisible$.content());

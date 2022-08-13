@@ -49,39 +49,39 @@ describe('scroll stores', () => {
 		sandbox.restore();
 	});
 	it('tests the non-passive version of windowScroll$', () => {
-		expect(windowScroll$.value).to.eqls({x: 0, y: 0});
+		expect(windowScroll$.content()).to.eqls({x: 0, y: 0});
 		setScroll({x: 10, y: 10});
-		expect(windowScroll$.value).to.eqls({x: 10, y: 10});
+		expect(windowScroll$.content()).to.eqls({x: 10, y: 10});
 	});
 	it('tests the passive version of windowScroll$', async () => {
-		expect(windowScrollPassive$.value).to.eqls({x: 0, y: 0});
+		expect(windowScrollPassive$.content()).to.eqls({x: 0, y: 0});
 		setScroll({x: 10, y: 10});
-		expect(windowScrollPassive$.value).to.eqls({x: 0, y: 0});
+		expect(windowScrollPassive$.content()).to.eqls({x: 0, y: 0});
 		await new Promise<void>((res) => setTimeout(res, 1000 / 60)); // approximating requestAnimationFrame to 1 / 60th of a second
-		expect(windowScrollPassive$.value).to.eqls({x: 10, y: 10});
+		expect(windowScrollPassive$.content()).to.eqls({x: 10, y: 10});
 	});
 	it('tests the non-passive version of scrollX$', () => {
-		expect(scrollX$.value).to.eqls(0);
+		expect(scrollX$.content()).to.eqls(0);
 		setScroll({x: 20, y: 30});
-		expect(scrollX$.value).to.eqls(20);
+		expect(scrollX$.content()).to.eqls(20);
 	});
 	it('tests the non version of scrollX$', async () => {
-		expect(scrollXPassive$.value).to.eqls(0);
+		expect(scrollXPassive$.content()).to.eqls(0);
 		setScroll({x: 40, y: 50});
-		expect(scrollXPassive$.value).to.eqls(0);
+		expect(scrollXPassive$.content()).to.eqls(0);
 		await new Promise<void>((res) => setTimeout(res, 1000 / 60)); // approximating requestAnimationFrame to 1 / 60th of a second
-		expect(scrollXPassive$.value).to.eqls(40);
+		expect(scrollXPassive$.content()).to.eqls(40);
 	});
 	it('tests the non-passive version of scrollY$', () => {
-		expect(scrollY$.value).to.eqls(0);
+		expect(scrollY$.content()).to.eqls(0);
 		setScroll({x: 20, y: 30});
-		expect(scrollY$.value).to.eqls(30);
+		expect(scrollY$.content()).to.eqls(30);
 	});
 	it('tests the passive version of scrollY$', async () => {
-		expect(scrollYPassive$.value).to.eqls(0);
+		expect(scrollYPassive$.content()).to.eqls(0);
 		setScroll({x: 40, y: 50});
-		expect(scrollYPassive$.value).to.eqls(0);
+		expect(scrollYPassive$.content()).to.eqls(0);
 		await new Promise<void>((res) => setTimeout(res, 1000 / 60)); // approximating requestAnimationFrame to 1 / 60th of a second
-		expect(scrollYPassive$.value).to.eqls(50);
+		expect(scrollYPassive$.content()).to.eqls(50);
 	});
 });

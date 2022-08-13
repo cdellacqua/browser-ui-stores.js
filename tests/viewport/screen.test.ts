@@ -102,200 +102,200 @@ describe('custom screen size store', () => {
 
 	it('tests the non-passive version of screenSizeMaxWidth$', () => {
 		setSize({width: 9000, height: 1000});
-		expect(screenSizeMaxWidth$.value.name).to.eqls('lg');
+		expect(screenSizeMaxWidth$.content().name).to.eqls('lg');
 		setSize({width: 993, height: 1000});
-		expect(screenSizeMaxWidth$.value.name).to.eqls('lg');
+		expect(screenSizeMaxWidth$.content().name).to.eqls('lg');
 		setSize({width: 992, height: 1000});
-		expect(screenSizeMaxWidth$.value.name).to.eqls('md');
+		expect(screenSizeMaxWidth$.content().name).to.eqls('md');
 		setSize({width: 769, height: 1000});
-		expect(screenSizeMaxWidth$.value.name).to.eqls('md');
+		expect(screenSizeMaxWidth$.content().name).to.eqls('md');
 		setSize({width: 768, height: 1000});
-		expect(screenSizeMaxWidth$.value.name).to.eqls('sm');
+		expect(screenSizeMaxWidth$.content().name).to.eqls('sm');
 		setSize({width: 0, height: 1000});
-		expect(screenSizeMaxWidth$.value.name).to.eqls('sm');
+		expect(screenSizeMaxWidth$.content().name).to.eqls('sm');
 	});
 	it('tests the passive version of screenSizeMaxWidth', async () => {
 		setSize({width: 9000, height: 1000});
 		await new Promise<void>((res) => setTimeout(res, 1000 / 60)); // approximating requestAnimationFrame to 1 / 60th of a second
-		expect(screenSizeMaxWidthPassive$.value.name).to.eqls('lg');
+		expect(screenSizeMaxWidthPassive$.content().name).to.eqls('lg');
 
 		setSize({width: 993, height: 1000});
-		expect(screenSizeMaxWidthPassive$.value.name).to.eqls('lg');
+		expect(screenSizeMaxWidthPassive$.content().name).to.eqls('lg');
 		await new Promise<void>((res) => setTimeout(res, 1000 / 60)); // approximating requestAnimationFrame to 1 / 60th of a second
-		expect(screenSizeMaxWidthPassive$.value.name).to.eqls('lg');
+		expect(screenSizeMaxWidthPassive$.content().name).to.eqls('lg');
 
 		setSize({width: 992, height: 1000});
-		expect(screenSizeMaxWidthPassive$.value.name).to.eqls('lg');
+		expect(screenSizeMaxWidthPassive$.content().name).to.eqls('lg');
 		await new Promise<void>((res) => setTimeout(res, 1000 / 60)); // approximating requestAnimationFrame to 1 / 60th of a second
-		expect(screenSizeMaxWidthPassive$.value.name).to.eqls('md');
+		expect(screenSizeMaxWidthPassive$.content().name).to.eqls('md');
 
 		setSize({width: 769, height: 1000});
-		expect(screenSizeMaxWidthPassive$.value.name).to.eqls('md');
+		expect(screenSizeMaxWidthPassive$.content().name).to.eqls('md');
 		await new Promise<void>((res) => setTimeout(res, 1000 / 60)); // approximating requestAnimationFrame to 1 / 60th of a second
-		expect(screenSizeMaxWidthPassive$.value.name).to.eqls('md');
+		expect(screenSizeMaxWidthPassive$.content().name).to.eqls('md');
 
 		setSize({width: 768, height: 1000});
-		expect(screenSizeMaxWidthPassive$.value.name).to.eqls('md');
+		expect(screenSizeMaxWidthPassive$.content().name).to.eqls('md');
 		await new Promise<void>((res) => setTimeout(res, 1000 / 60)); // approximating requestAnimationFrame to 1 / 60th of a second
-		expect(screenSizeMaxWidthPassive$.value.name).to.eqls('sm');
+		expect(screenSizeMaxWidthPassive$.content().name).to.eqls('sm');
 
 		setSize({width: 0, height: 1000});
-		expect(screenSizeMaxWidthPassive$.value.name).to.eqls('sm');
+		expect(screenSizeMaxWidthPassive$.content().name).to.eqls('sm');
 		await new Promise<void>((res) => setTimeout(res, 1000 / 60)); // approximating requestAnimationFrame to 1 / 60th of a second
-		expect(screenSizeMaxWidthPassive$.value.name).to.eqls('sm');
+		expect(screenSizeMaxWidthPassive$.content().name).to.eqls('sm');
 	});
 
 	it('tests the non-passive version of screenSizeMaxHeight$', () => {
 		setSize({height: 9000, width: 1000});
-		expect(screenSizeMaxHeight$.value.name).to.eqls('lg');
+		expect(screenSizeMaxHeight$.content().name).to.eqls('lg');
 		setSize({height: 993, width: 1000});
-		expect(screenSizeMaxHeight$.value.name).to.eqls('lg');
+		expect(screenSizeMaxHeight$.content().name).to.eqls('lg');
 		setSize({height: 992, width: 1000});
-		expect(screenSizeMaxHeight$.value.name).to.eqls('md');
+		expect(screenSizeMaxHeight$.content().name).to.eqls('md');
 		setSize({height: 769, width: 1000});
-		expect(screenSizeMaxHeight$.value.name).to.eqls('md');
+		expect(screenSizeMaxHeight$.content().name).to.eqls('md');
 		setSize({height: 768, width: 1000});
-		expect(screenSizeMaxHeight$.value.name).to.eqls('sm');
+		expect(screenSizeMaxHeight$.content().name).to.eqls('sm');
 		setSize({height: 0, width: 1000});
-		expect(screenSizeMaxHeight$.value.name).to.eqls('sm');
+		expect(screenSizeMaxHeight$.content().name).to.eqls('sm');
 	});
 	it('tests the passive version of screenSizeMaxHeight', async () => {
 		setSize({height: 9000, width: 1000});
 		await new Promise<void>((res) => setTimeout(res, 1000 / 60)); // approximating requestAnimationFrame to 1 / 60th of a second
-		expect(screenSizeMaxHeightPassive$.value.name).to.eqls('lg');
+		expect(screenSizeMaxHeightPassive$.content().name).to.eqls('lg');
 
 		setSize({height: 993, width: 1000});
-		expect(screenSizeMaxHeightPassive$.value.name).to.eqls('lg');
+		expect(screenSizeMaxHeightPassive$.content().name).to.eqls('lg');
 		await new Promise<void>((res) => setTimeout(res, 1000 / 60)); // approximating requestAnimationFrame to 1 / 60th of a second
-		expect(screenSizeMaxHeightPassive$.value.name).to.eqls('lg');
+		expect(screenSizeMaxHeightPassive$.content().name).to.eqls('lg');
 
 		setSize({height: 992, width: 1000});
-		expect(screenSizeMaxHeightPassive$.value.name).to.eqls('lg');
+		expect(screenSizeMaxHeightPassive$.content().name).to.eqls('lg');
 		await new Promise<void>((res) => setTimeout(res, 1000 / 60)); // approximating requestAnimationFrame to 1 / 60th of a second
-		expect(screenSizeMaxHeightPassive$.value.name).to.eqls('md');
+		expect(screenSizeMaxHeightPassive$.content().name).to.eqls('md');
 
 		setSize({height: 769, width: 1000});
-		expect(screenSizeMaxHeightPassive$.value.name).to.eqls('md');
+		expect(screenSizeMaxHeightPassive$.content().name).to.eqls('md');
 		await new Promise<void>((res) => setTimeout(res, 1000 / 60)); // approximating requestAnimationFrame to 1 / 60th of a second
-		expect(screenSizeMaxHeightPassive$.value.name).to.eqls('md');
+		expect(screenSizeMaxHeightPassive$.content().name).to.eqls('md');
 
 		setSize({height: 768, width: 1000});
-		expect(screenSizeMaxHeightPassive$.value.name).to.eqls('md');
+		expect(screenSizeMaxHeightPassive$.content().name).to.eqls('md');
 		await new Promise<void>((res) => setTimeout(res, 1000 / 60)); // approximating requestAnimationFrame to 1 / 60th of a second
-		expect(screenSizeMaxHeightPassive$.value.name).to.eqls('sm');
+		expect(screenSizeMaxHeightPassive$.content().name).to.eqls('sm');
 
 		setSize({height: 0, width: 1000});
-		expect(screenSizeMaxHeightPassive$.value.name).to.eqls('sm');
+		expect(screenSizeMaxHeightPassive$.content().name).to.eqls('sm');
 		await new Promise<void>((res) => setTimeout(res, 1000 / 60)); // approximating requestAnimationFrame to 1 / 60th of a second
-		expect(screenSizeMaxHeightPassive$.value.name).to.eqls('sm');
+		expect(screenSizeMaxHeightPassive$.content().name).to.eqls('sm');
 	});
 
 	it('tests the non-passive version of screenSizeMinWidth$', () => {
 		setSize({width: 9000, height: 1000});
-		expect(screenSizeMinWidth$.value.name).to.eqls('lg');
+		expect(screenSizeMinWidth$.content().name).to.eqls('lg');
 		setSize({width: 992, height: 1000});
-		expect(screenSizeMinWidth$.value.name).to.eqls('lg');
+		expect(screenSizeMinWidth$.content().name).to.eqls('lg');
 		setSize({width: 991, height: 1000});
-		expect(screenSizeMinWidth$.value.name).to.eqls('md');
+		expect(screenSizeMinWidth$.content().name).to.eqls('md');
 		setSize({width: 768, height: 1000});
-		expect(screenSizeMinWidth$.value.name).to.eqls('md');
+		expect(screenSizeMinWidth$.content().name).to.eqls('md');
 		setSize({width: 767, height: 1000});
-		expect(screenSizeMinWidth$.value.name).to.eqls('sm');
+		expect(screenSizeMinWidth$.content().name).to.eqls('sm');
 		setSize({width: 0, height: 1000});
-		expect(screenSizeMinWidth$.value.name).to.eqls('sm');
+		expect(screenSizeMinWidth$.content().name).to.eqls('sm');
 	});
 	it('tests the passive version of screenSizeMinWidth', async () => {
 		setSize({width: 9000, height: 1000});
 		await new Promise<void>((res) => setTimeout(res, 1000 / 60)); // approximating requestAnimationFrame to 1 / 60th of a second
-		expect(screenSizeMinWidthPassive$.value.name).to.eqls('lg');
+		expect(screenSizeMinWidthPassive$.content().name).to.eqls('lg');
 
 		setSize({width: 992, height: 1000});
-		expect(screenSizeMinWidthPassive$.value.name).to.eqls('lg');
+		expect(screenSizeMinWidthPassive$.content().name).to.eqls('lg');
 		await new Promise<void>((res) => setTimeout(res, 1000 / 60)); // approximating requestAnimationFrame to 1 / 60th of a second
-		expect(screenSizeMinWidthPassive$.value.name).to.eqls('lg');
+		expect(screenSizeMinWidthPassive$.content().name).to.eqls('lg');
 
 		setSize({width: 991, height: 1000});
-		expect(screenSizeMinWidthPassive$.value.name).to.eqls('lg');
+		expect(screenSizeMinWidthPassive$.content().name).to.eqls('lg');
 		await new Promise<void>((res) => setTimeout(res, 1000 / 60)); // approximating requestAnimationFrame to 1 / 60th of a second
-		expect(screenSizeMinWidthPassive$.value.name).to.eqls('md');
+		expect(screenSizeMinWidthPassive$.content().name).to.eqls('md');
 
 		setSize({width: 768, height: 1000});
-		expect(screenSizeMinWidthPassive$.value.name).to.eqls('md');
+		expect(screenSizeMinWidthPassive$.content().name).to.eqls('md');
 		await new Promise<void>((res) => setTimeout(res, 1000 / 60)); // approximating requestAnimationFrame to 1 / 60th of a second
-		expect(screenSizeMinWidthPassive$.value.name).to.eqls('md');
+		expect(screenSizeMinWidthPassive$.content().name).to.eqls('md');
 
 		setSize({width: 767, height: 1000});
-		expect(screenSizeMinWidthPassive$.value.name).to.eqls('md');
+		expect(screenSizeMinWidthPassive$.content().name).to.eqls('md');
 		await new Promise<void>((res) => setTimeout(res, 1000 / 60)); // approximating requestAnimationFrame to 1 / 60th of a second
-		expect(screenSizeMinWidthPassive$.value.name).to.eqls('sm');
+		expect(screenSizeMinWidthPassive$.content().name).to.eqls('sm');
 
 		setSize({width: 0, height: 1000});
-		expect(screenSizeMinWidthPassive$.value.name).to.eqls('sm');
+		expect(screenSizeMinWidthPassive$.content().name).to.eqls('sm');
 		await new Promise<void>((res) => setTimeout(res, 1000 / 60)); // approximating requestAnimationFrame to 1 / 60th of a second
-		expect(screenSizeMinWidthPassive$.value.name).to.eqls('sm');
+		expect(screenSizeMinWidthPassive$.content().name).to.eqls('sm');
 	});
 
 	it('tests the non-passive version of screenSizeMinHeight$', () => {
 		setSize({height: 9000, width: 1000});
-		expect(screenSizeMinHeight$.value.name).to.eqls('lg');
+		expect(screenSizeMinHeight$.content().name).to.eqls('lg');
 		setSize({height: 992, width: 1000});
-		expect(screenSizeMinHeight$.value.name).to.eqls('lg');
+		expect(screenSizeMinHeight$.content().name).to.eqls('lg');
 		setSize({height: 991, width: 1000});
-		expect(screenSizeMinHeight$.value.name).to.eqls('md');
+		expect(screenSizeMinHeight$.content().name).to.eqls('md');
 		setSize({height: 768, width: 1000});
-		expect(screenSizeMinHeight$.value.name).to.eqls('md');
+		expect(screenSizeMinHeight$.content().name).to.eqls('md');
 		setSize({height: 767, width: 1000});
-		expect(screenSizeMinHeight$.value.name).to.eqls('sm');
+		expect(screenSizeMinHeight$.content().name).to.eqls('sm');
 		setSize({height: 0, width: 1000});
-		expect(screenSizeMinHeight$.value.name).to.eqls('sm');
+		expect(screenSizeMinHeight$.content().name).to.eqls('sm');
 	});
 	it('tests the passive version of screenSizeMinHeight', async () => {
 		setSize({height: 9000, width: 1000});
 		await new Promise<void>((res) => setTimeout(res, 1000 / 60)); // approximating requestAnimationFrame to 1 / 60th of a second
-		expect(screenSizeMinHeightPassive$.value.name).to.eqls('lg');
+		expect(screenSizeMinHeightPassive$.content().name).to.eqls('lg');
 
 		setSize({height: 992, width: 1000});
-		expect(screenSizeMinHeightPassive$.value.name).to.eqls('lg');
+		expect(screenSizeMinHeightPassive$.content().name).to.eqls('lg');
 		await new Promise<void>((res) => setTimeout(res, 1000 / 60)); // approximating requestAnimationFrame to 1 / 60th of a second
-		expect(screenSizeMinHeightPassive$.value.name).to.eqls('lg');
+		expect(screenSizeMinHeightPassive$.content().name).to.eqls('lg');
 
 		setSize({height: 991, width: 1000});
-		expect(screenSizeMinHeightPassive$.value.name).to.eqls('lg');
+		expect(screenSizeMinHeightPassive$.content().name).to.eqls('lg');
 		await new Promise<void>((res) => setTimeout(res, 1000 / 60)); // approximating requestAnimationFrame to 1 / 60th of a second
-		expect(screenSizeMinHeightPassive$.value.name).to.eqls('md');
+		expect(screenSizeMinHeightPassive$.content().name).to.eqls('md');
 
 		setSize({height: 768, width: 1000});
-		expect(screenSizeMinHeightPassive$.value.name).to.eqls('md');
+		expect(screenSizeMinHeightPassive$.content().name).to.eqls('md');
 		await new Promise<void>((res) => setTimeout(res, 1000 / 60)); // approximating requestAnimationFrame to 1 / 60th of a second
-		expect(screenSizeMinHeightPassive$.value.name).to.eqls('md');
+		expect(screenSizeMinHeightPassive$.content().name).to.eqls('md');
 
 		setSize({height: 767, width: 1000});
-		expect(screenSizeMinHeightPassive$.value.name).to.eqls('md');
+		expect(screenSizeMinHeightPassive$.content().name).to.eqls('md');
 		await new Promise<void>((res) => setTimeout(res, 1000 / 60)); // approximating requestAnimationFrame to 1 / 60th of a second
-		expect(screenSizeMinHeightPassive$.value.name).to.eqls('sm');
+		expect(screenSizeMinHeightPassive$.content().name).to.eqls('sm');
 
 		setSize({height: 0, width: 1000});
-		expect(screenSizeMinHeightPassive$.value.name).to.eqls('sm');
+		expect(screenSizeMinHeightPassive$.content().name).to.eqls('sm');
 		await new Promise<void>((res) => setTimeout(res, 1000 / 60)); // approximating requestAnimationFrame to 1 / 60th of a second
-		expect(screenSizeMinHeightPassive$.value.name).to.eqls('sm');
+		expect(screenSizeMinHeightPassive$.content().name).to.eqls('sm');
 	});
 
 	it('verifies that indexes are from lower to higher resolution', async () => {
 		setSize({width: 0, height: 0});
-		expect(screenSizeMaxWidth$.value.index).to.be.eq(0);
-		expect(screenSizeMinWidth$.value.index).to.be.eq(0);
-		expect(screenSizeMaxHeight$.value.index).to.be.eq(0);
-		expect(screenSizeMinHeight$.value.index).to.be.eq(0);
+		expect(screenSizeMaxWidth$.content().index).to.be.eq(0);
+		expect(screenSizeMinWidth$.content().index).to.be.eq(0);
+		expect(screenSizeMaxHeight$.content().index).to.be.eq(0);
+		expect(screenSizeMinHeight$.content().index).to.be.eq(0);
 		setSize({width: 800, height: 800});
-		expect(screenSizeMaxWidth$.value.index).to.be.eq(1);
-		expect(screenSizeMinWidth$.value.index).to.be.eq(1);
-		expect(screenSizeMaxHeight$.value.index).to.be.eq(1);
-		expect(screenSizeMinHeight$.value.index).to.be.eq(1);
+		expect(screenSizeMaxWidth$.content().index).to.be.eq(1);
+		expect(screenSizeMinWidth$.content().index).to.be.eq(1);
+		expect(screenSizeMaxHeight$.content().index).to.be.eq(1);
+		expect(screenSizeMinHeight$.content().index).to.be.eq(1);
 		setSize({width: 1000, height: 1000});
-		expect(screenSizeMaxWidth$.value.index).to.be.eq(2);
-		expect(screenSizeMinWidth$.value.index).to.be.eq(2);
-		expect(screenSizeMaxHeight$.value.index).to.be.eq(2);
-		expect(screenSizeMinHeight$.value.index).to.be.eq(2);
+		expect(screenSizeMaxWidth$.content().index).to.be.eq(2);
+		expect(screenSizeMinWidth$.content().index).to.be.eq(2);
+		expect(screenSizeMaxHeight$.content().index).to.be.eq(2);
+		expect(screenSizeMinHeight$.content().index).to.be.eq(2);
 	});
 
 	it('checks parameter validation', () => {
