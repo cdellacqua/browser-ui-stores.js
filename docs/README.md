@@ -12,7 +12,22 @@ browser-ui-stores
 ### Type Aliases
 
 - [ColorScheme](README.md#colorscheme)
+- [DerivedStoreConfig](README.md#derivedstoreconfig)
+- [EqualityComparator](README.md#equalitycomparator)
+- [Getter](README.md#getter)
 - [Orientation](README.md#orientation)
+- [ReadonlySignal](README.md#readonlysignal)
+- [ReadonlyStore](README.md#readonlystore)
+- [Setter](README.md#setter)
+- [Signal](README.md#signal)
+- [StartHandler](README.md#starthandler)
+- [StopHandler](README.md#stophandler)
+- [Store](README.md#store)
+- [StoreConfig](README.md#storeconfig)
+- [Subscriber](README.md#subscriber)
+- [Unsubscribe](README.md#unsubscribe)
+- [Update](README.md#update)
+- [Updater](README.md#updater)
 
 ### Variables
 
@@ -41,8 +56,14 @@ browser-ui-stores
 
 ### Functions
 
+- [coalesceSignals](README.md#coalescesignals)
+- [deriveSignal](README.md#derivesignal)
+- [makeDerivedStore](README.md#makederivedstore)
 - [makeMediaQueryStore](README.md#makemediaquerystore)
+- [makeReadonlyStore](README.md#makereadonlystore)
 - [makeScreenSizeStore](README.md#makescreensizestore)
+- [makeSignal](README.md#makesignal)
+- [makeStore](README.md#makestore)
 
 ## Type Aliases
 
@@ -52,7 +73,90 @@ browser-ui-stores
 
 #### Defined in
 
-[appearance/prefers-color-scheme.ts:4](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/appearance/prefers-color-scheme.ts#L4)
+[src/lib/appearance/prefers-color-scheme.ts:4](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/appearance/prefers-color-scheme.ts#L4)
+
+___
+
+### DerivedStoreConfig
+
+Ƭ **DerivedStoreConfig**<`T`\>: `Object`
+
+Configurations for derived stores.
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Type declaration
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `comparator?` | [`EqualityComparator`](README.md#equalitycomparator)<`T`\> | (optional, defaults to `(a, b) => a === b`) a function that's used to determine if the current value of the store value is different from the one being set and thus if the store needs to be updated and the subscribers notified. |
+
+#### Defined in
+
+node_modules/universal-stores/dist/composition.d.ts:15
+
+___
+
+### EqualityComparator
+
+Ƭ **EqualityComparator**<`T`\>: (`a`: `T`, `b`: `T`) => `boolean`
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Type declaration
+
+▸ (`a`, `b`): `boolean`
+
+A comparison function used to optimize subscribers notifications. Used in [Store](README.md#store)
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `a` | `T` |
+| `b` | `T` |
+
+##### Returns
+
+`boolean`
+
+#### Defined in
+
+node_modules/universal-stores/dist/index.d.ts:22
+
+___
+
+### Getter
+
+Ƭ **Getter**<`T`\>: () => `T`
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Type declaration
+
+▸ (): `T`
+
+A generic getter function. Used in [Store](README.md#store)
+
+##### Returns
+
+`T`
+
+#### Defined in
+
+node_modules/universal-stores/dist/index.d.ts:16
 
 ___
 
@@ -62,13 +166,330 @@ ___
 
 #### Defined in
 
-[viewport/orientation.ts:4](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/orientation.ts#L4)
+[src/lib/viewport/orientation.ts:4](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/orientation.ts#L4)
+
+___
+
+### ReadonlySignal
+
+Ƭ **ReadonlySignal**<`T`\>: `Object`
+
+A signal that can have subscribers and emit values to them.
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `nOfSubscriptions` | () => `number` |
+| `subscribe` | (`subscriber`: [`Subscriber`](README.md#subscriber)<`T`\>) => [`Unsubscribe`](README.md#unsubscribe) |
+| `subscribeOnce` | (`subscriber`: [`Subscriber`](README.md#subscriber)<`T`\>) => [`Unsubscribe`](README.md#unsubscribe) |
+
+#### Defined in
+
+node_modules/@cdellacqua/signals/dist/index.d.ts:6
+
+___
+
+### ReadonlyStore
+
+Ƭ **ReadonlyStore**<`T`\>: `Object`
+
+A store that can have subscribers and emit values to them. It also
+provides the current value upon subscription. It's readonly in the
+sense that it doesn't provide direct set/update methods, unlike [Store](README.md#store),
+therefore its value can only be changed by a [StartHandler](README.md#starthandler) (see also [makeReadonlyStore](README.md#makereadonlystore)).
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `content` | () => `T` |
+| `nOfSubscriptions` | () => `number` |
+| `subscribe` | (`subscriber`: [`Subscriber`](README.md#subscriber)<`T`\>) => [`Unsubscribe`](README.md#unsubscribe) |
+
+#### Defined in
+
+node_modules/universal-stores/dist/index.d.ts:33
+
+___
+
+### Setter
+
+Ƭ **Setter**<`T`\>: (`newValue`: `T`) => `void`
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Type declaration
+
+▸ (`newValue`): `void`
+
+A generic setter function. Used in [Store](README.md#store)
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `newValue` | `T` |
+
+##### Returns
+
+`void`
+
+#### Defined in
+
+node_modules/universal-stores/dist/index.d.ts:14
+
+___
+
+### Signal
+
+Ƭ **Signal**<`T`\>: [`ReadonlySignal`](README.md#readonlysignal)<`T`\> & { `emit`: (`v`: `T`) => `void`  }
+
+A signal that can have subscribers and emit values to them.
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Defined in
+
+node_modules/@cdellacqua/signals/dist/index.d.ts:28
+
+___
+
+### StartHandler
+
+Ƭ **StartHandler**<`T`\>: (`set`: [`Setter`](README.md#setter)<`T`\>) => [`StopHandler`](README.md#stophandler) \| `void`
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Type declaration
+
+▸ (`set`): [`StopHandler`](README.md#stophandler) \| `void`
+
+A function that gets called once a store gets at least one subscriber. Used in [Store](README.md#store)
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `set` | [`Setter`](README.md#setter)<`T`\> |
+
+##### Returns
+
+[`StopHandler`](README.md#stophandler) \| `void`
+
+#### Defined in
+
+node_modules/universal-stores/dist/index.d.ts:26
+
+___
+
+### StopHandler
+
+Ƭ **StopHandler**: () => `void`
+
+#### Type declaration
+
+▸ (): `void`
+
+A function that gets called once a store reaches 0 subscribers. Used in [Store](README.md#store)
+
+##### Returns
+
+`void`
+
+#### Defined in
+
+node_modules/universal-stores/dist/index.d.ts:24
+
+___
+
+### Store
+
+Ƭ **Store**<`T`\>: [`ReadonlyStore`](README.md#readonlystore)<`T`\> & { `set`: (`v`: `T`) => `void` ; `update`: (`updater`: [`Updater`](README.md#updater)<`T`\>) => `void`  }
+
+A store that can have subscribers and emit values to them. It also
+provides the current value upon subscription.
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Defined in
+
+node_modules/universal-stores/dist/index.d.ts:56
+
+___
+
+### StoreConfig
+
+Ƭ **StoreConfig**<`T`\>: `Object`
+
+Configurations for Store<T> and ReadonlyStore<T>.
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Type declaration
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `comparator?` | [`EqualityComparator`](README.md#equalitycomparator)<`T`\> | (optional, defaults to `(a, b) => a === b`) a function that's used to determine if the current value of the store value is different from the one being set and thus if the store needs to be updated and the subscribers notified. |
+| `start?` | [`StartHandler`](README.md#starthandler)<`T`\> | (optional) a [StartHandler](README.md#starthandler) that will get called once there is at least one subscriber to this store. |
+
+#### Defined in
+
+node_modules/universal-stores/dist/index.d.ts:72
+
+___
+
+### Subscriber
+
+Ƭ **Subscriber**<`T`\>: (`current`: `T`) => `void`
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Type declaration
+
+▸ (`current`): `void`
+
+A generic subscriber that takes a value emitted by a signal as its only parameter.
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `current` | `T` |
+
+##### Returns
+
+`void`
+
+#### Defined in
+
+node_modules/@cdellacqua/signals/dist/index.d.ts:2
+
+___
+
+### Unsubscribe
+
+Ƭ **Unsubscribe**: () => `void`
+
+#### Type declaration
+
+▸ (): `void`
+
+A function that's used to unsubscribe a subscriber from a signal.
+
+##### Returns
+
+`void`
+
+#### Defined in
+
+node_modules/@cdellacqua/signals/dist/index.d.ts:4
+
+___
+
+### Update
+
+Ƭ **Update**<`T`\>: (`updater`: (`current`: `T`) => `T`) => `void`
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Type declaration
+
+▸ (`updater`): `void`
+
+A generic update function. Used in [Store](README.md#store)
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `updater` | (`current`: `T`) => `T` |
+
+##### Returns
+
+`void`
+
+#### Defined in
+
+node_modules/universal-stores/dist/index.d.ts:20
+
+___
+
+### Updater
+
+Ƭ **Updater**<`T`\>: (`current`: `T`) => `T`
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Type declaration
+
+▸ (`current`): `T`
+
+A generic updater function. Used in [Store](README.md#store)
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `current` | `T` |
+
+##### Returns
+
+`T`
+
+#### Defined in
+
+node_modules/universal-stores/dist/index.d.ts:18
 
 ## Variables
 
 ### bodyScrollHeight$
 
-• `Const` **bodyScrollHeight$**: `ReadonlyStore`<`number`\>
+• `Const` **bodyScrollHeight$**: [`ReadonlyStore`](README.md#readonlystore)<`number`\>
 
 A readonly store that contains the scrollHeight of the body.
 
@@ -77,13 +498,13 @@ so that you can still override when needed by editing the body inline style.
 
 #### Defined in
 
-[body/size.ts:106](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/body/size.ts#L106)
+[src/lib/body/size.ts:106](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/body/size.ts#L106)
 
 ___
 
 ### bodyScrollHeightPassive$
 
-• `Const` **bodyScrollHeightPassive$**: `ReadonlyStore`<`number`\>
+• `Const` **bodyScrollHeightPassive$**: [`ReadonlyStore`](README.md#readonlystore)<`number`\>
 
 A readonly store that contains the scrollHeight of the body (uses a passive event listener).
 
@@ -92,13 +513,13 @@ so that you can still override when needed by editing the body inline style.
 
 #### Defined in
 
-[body/size.ts:117](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/body/size.ts#L117)
+[src/lib/body/size.ts:117](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/body/size.ts#L117)
 
 ___
 
 ### bodyScrollSize$
 
-• `Const` **bodyScrollSize$**: `ReadonlyStore`<{ `height`: `number` ; `width`: `number`  }\>
+• `Const` **bodyScrollSize$**: [`ReadonlyStore`](README.md#readonlystore)<{ `height`: `number` ; `width`: `number`  }\>
 
 A readonly store that contains the scroll size of the body.
 
@@ -107,13 +528,13 @@ so that you can still override when needed by editing the body inline style.
 
 #### Defined in
 
-[body/size.ts:67](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/body/size.ts#L67)
+[src/lib/body/size.ts:67](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/body/size.ts#L67)
 
 ___
 
 ### bodyScrollSizePassive$
 
-• `Const` **bodyScrollSizePassive$**: `ReadonlyStore`<{ `height`: `number` ; `width`: `number`  }\>
+• `Const` **bodyScrollSizePassive$**: [`ReadonlyStore`](README.md#readonlystore)<{ `height`: `number` ; `width`: `number`  }\>
 
 A readonly store that contains the scroll size of the body (uses a passive event listener).
 
@@ -122,13 +543,13 @@ so that you can still override when needed by editing the body inline style.
 
 #### Defined in
 
-[body/size.ts:75](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/body/size.ts#L75)
+[src/lib/body/size.ts:75](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/body/size.ts#L75)
 
 ___
 
 ### bodyScrollWidth$
 
-• `Const` **bodyScrollWidth$**: `ReadonlyStore`<`number`\>
+• `Const` **bodyScrollWidth$**: [`ReadonlyStore`](README.md#readonlystore)<`number`\>
 
 A readonly store that contains the scrollWidth of the body.
 
@@ -137,13 +558,13 @@ so that you can still override when needed by editing the body inline style.
 
 #### Defined in
 
-[body/size.ts:83](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/body/size.ts#L83)
+[src/lib/body/size.ts:83](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/body/size.ts#L83)
 
 ___
 
 ### bodyScrollWidthPassive$
 
-• `Const` **bodyScrollWidthPassive$**: `ReadonlyStore`<`number`\>
+• `Const` **bodyScrollWidthPassive$**: [`ReadonlyStore`](README.md#readonlystore)<`number`\>
 
 A readonly store that contains the scrollWidth of the body (uses a passive event listener).
 
@@ -153,85 +574,85 @@ You will still be able to override tp needed by editing the body inline style.
 
 #### Defined in
 
-[body/size.ts:95](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/body/size.ts#L95)
+[src/lib/body/size.ts:95](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/body/size.ts#L95)
 
 ___
 
 ### documentVisible$
 
-• `Const` **documentVisible$**: `ReadonlyStore`<`boolean`\>
+• `Const` **documentVisible$**: [`ReadonlyStore`](README.md#readonlystore)<`boolean`\>
 
 A readonly store that contains true if the document is visible, false otherwise.
 
 #### Defined in
 
-[document/visible.ts:7](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/document/visible.ts#L7)
+[src/lib/document/visible.ts:7](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/document/visible.ts#L7)
 
 ___
 
 ### innerHeight$
 
-• `Const` **innerHeight$**: `ReadonlyStore`<`number`\>
+• `Const` **innerHeight$**: [`ReadonlyStore`](README.md#readonlystore)<`number`\>
 
 A readonly store that contains the innerHeight of the window.
 
 #### Defined in
 
-[viewport/size.ts:51](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/size.ts#L51)
+[src/lib/viewport/size.ts:51](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/size.ts#L51)
 
 ___
 
 ### innerHeightPassive$
 
-• `Const` **innerHeightPassive$**: `ReadonlyStore`<`number`\>
+• `Const` **innerHeightPassive$**: [`ReadonlyStore`](README.md#readonlystore)<`number`\>
 
 A readonly store that contains the innerHeight of the window (uses a passive event listener).
 
 #### Defined in
 
-[viewport/size.ts:59](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/size.ts#L59)
+[src/lib/viewport/size.ts:59](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/size.ts#L59)
 
 ___
 
 ### innerWidth$
 
-• `Const` **innerWidth$**: `ReadonlyStore`<`number`\>
+• `Const` **innerWidth$**: [`ReadonlyStore`](README.md#readonlystore)<`number`\>
 
 A readonly store that contains the innerWidth of the window.
 
 #### Defined in
 
-[viewport/size.ts:38](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/size.ts#L38)
+[src/lib/viewport/size.ts:38](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/size.ts#L38)
 
 ___
 
 ### innerWidthPassive$
 
-• `Const` **innerWidthPassive$**: `ReadonlyStore`<`number`\>
+• `Const` **innerWidthPassive$**: [`ReadonlyStore`](README.md#readonlystore)<`number`\>
 
 A readonly store that contains the innerWidth of the window (uses a passive event listener).
 
 #### Defined in
 
-[viewport/size.ts:43](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/size.ts#L43)
+[src/lib/viewport/size.ts:43](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/size.ts#L43)
 
 ___
 
 ### orientation$
 
-• `Const` **orientation$**: `ReadonlyStore`<[`Orientation`](README.md#orientation)\>
+• `Const` **orientation$**: [`ReadonlyStore`](README.md#readonlystore)<[`Orientation`](README.md#orientation)\>
 
 A readonly store that indicates whether the viewport is in landscape or portrait mode.
 
 #### Defined in
 
-[viewport/orientation.ts:9](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/orientation.ts#L9)
+[src/lib/viewport/orientation.ts:9](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/orientation.ts#L9)
 
 ___
 
 ### prefersColorScheme$
 
-• `Const` **prefersColorScheme$**: `ReadonlyStore`<[`ColorScheme`](README.md#colorscheme)\>
+• `Const` **prefersColorScheme$**: [`ReadonlyStore`](README.md#readonlystore)<[`ColorScheme`](README.md#colorscheme)\>
 
 A readonly store that contains the preferred color scheme.
 It defaults to 'light' if no explicit preference has been set by
@@ -239,13 +660,13 @@ the user agent.
 
 #### Defined in
 
-[appearance/prefers-color-scheme.ts:11](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/appearance/prefers-color-scheme.ts#L11)
+[src/lib/appearance/prefers-color-scheme.ts:11](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/appearance/prefers-color-scheme.ts#L11)
 
 ___
 
 ### prefersColorSchemeDarkDefault$
 
-• `Const` **prefersColorSchemeDarkDefault$**: `ReadonlyStore`<[`ColorScheme`](README.md#colorscheme)\>
+• `Const` **prefersColorSchemeDarkDefault$**: [`ReadonlyStore`](README.md#readonlystore)<[`ColorScheme`](README.md#colorscheme)\>
 
 A readonly store that contains the preferred color scheme.
 It defaults to 'dark' if no explicit preference has been set by
@@ -253,109 +674,310 @@ the user agent.
 
 #### Defined in
 
-[appearance/prefers-color-scheme.ts:21](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/appearance/prefers-color-scheme.ts#L21)
+[src/lib/appearance/prefers-color-scheme.ts:21](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/appearance/prefers-color-scheme.ts#L21)
 
 ___
 
 ### scrollX$
 
-• `Const` **scrollX$**: `ReadonlyStore`<`number`\>
+• `Const` **scrollX$**: [`ReadonlyStore`](README.md#readonlystore)<`number`\>
 
 A readonly store that contains the current scrolling position on the X axis.
 
 #### Defined in
 
-[viewport/scroll.ts:37](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/scroll.ts#L37)
+[src/lib/viewport/scroll.ts:37](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/scroll.ts#L37)
 
 ___
 
 ### scrollXPassive$
 
-• `Const` **scrollXPassive$**: `ReadonlyStore`<`number`\>
+• `Const` **scrollXPassive$**: [`ReadonlyStore`](README.md#readonlystore)<`number`\>
 
 A readonly store that contains the current scrolling position on the X axis (uses a passive event listener).
 
 #### Defined in
 
-[viewport/scroll.ts:42](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/scroll.ts#L42)
+[src/lib/viewport/scroll.ts:42](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/scroll.ts#L42)
 
 ___
 
 ### scrollY$
 
-• `Const` **scrollY$**: `ReadonlyStore`<`number`\>
+• `Const` **scrollY$**: [`ReadonlyStore`](README.md#readonlystore)<`number`\>
 
 A readonly store that contains the current scrolling position on the Y axis.
 
 #### Defined in
 
-[viewport/scroll.ts:50](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/scroll.ts#L50)
+[src/lib/viewport/scroll.ts:50](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/scroll.ts#L50)
 
 ___
 
 ### scrollYPassive$
 
-• `Const` **scrollYPassive$**: `ReadonlyStore`<`number`\>
+• `Const` **scrollYPassive$**: [`ReadonlyStore`](README.md#readonlystore)<`number`\>
 
 A readonly store that contains the current scrolling position on the Y axis (uses a passive event listener).
 
 #### Defined in
 
-[viewport/scroll.ts:55](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/scroll.ts#L55)
+[src/lib/viewport/scroll.ts:55](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/scroll.ts#L55)
 
 ___
 
 ### viewportSize$
 
-• `Const` **viewportSize$**: `ReadonlyStore`<{ `height`: `number` ; `width`: `number`  }\>
+• `Const` **viewportSize$**: [`ReadonlyStore`](README.md#readonlystore)<{ `height`: `number` ; `width`: `number`  }\>
 
 A readonly store that contains the size of the viewport (innerWidth and innerHeight of the window).
 
 #### Defined in
 
-[viewport/size.ts:28](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/size.ts#L28)
+[src/lib/viewport/size.ts:28](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/size.ts#L28)
 
 ___
 
 ### viewportSizePassive$
 
-• `Const` **viewportSizePassive$**: `ReadonlyStore`<{ `height`: `number` ; `width`: `number`  }\>
+• `Const` **viewportSizePassive$**: [`ReadonlyStore`](README.md#readonlystore)<{ `height`: `number` ; `width`: `number`  }\>
 
 A readonly store that contains the size of the viewport (innerWidth and innerHeight of the window) (uses a passive event listener).
 
 #### Defined in
 
-[viewport/size.ts:33](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/size.ts#L33)
+[src/lib/viewport/size.ts:33](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/size.ts#L33)
 
 ___
 
 ### windowScroll$
 
-• `Const` **windowScroll$**: `ReadonlyStore`<{ `x`: `number` ; `y`: `number`  }\>
+• `Const` **windowScroll$**: [`ReadonlyStore`](README.md#readonlystore)<{ `x`: `number` ; `y`: `number`  }\>
 
 A readonly store that contains the current scrolling position (x and y).
 
 #### Defined in
 
-[viewport/scroll.ts:27](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/scroll.ts#L27)
+[src/lib/viewport/scroll.ts:27](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/scroll.ts#L27)
 
 ___
 
 ### windowScrollPassive$
 
-• `Const` **windowScrollPassive$**: `ReadonlyStore`<{ `x`: `number` ; `y`: `number`  }\>
+• `Const` **windowScrollPassive$**: [`ReadonlyStore`](README.md#readonlystore)<{ `x`: `number` ; `y`: `number`  }\>
 
 A readonly store that contains the current scrolling position (x and y) (uses a passive event listener).
 
 #### Defined in
 
-[viewport/scroll.ts:32](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/scroll.ts#L32)
+[src/lib/viewport/scroll.ts:32](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/scroll.ts#L32)
 
 ## Functions
 
+### coalesceSignals
+
+▸ **coalesceSignals**<`T`\>(`signals$`): [`ReadonlySignal`](README.md#readonlysignal)<`T`[`number`]\>
+
+Coalesce multiple signals into one that will emit the latest value emitted
+by any of the source signals.
+
+Example:
+```ts
+const lastUpdate1$ = makeSignal<number>();
+const lastUpdate2$ = makeSignal<number>();
+const latestUpdate$ = coalesceSignals([lastUpdate1$, lastUpdate2$]);
+latestUpdate$.subscribe((v) => console.log(v));
+lastUpdate1$.emit(1577923200000); // will log 1577923200000
+lastUpdate2$.emit(1653230659450); // will log 1653230659450
+```
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `unknown`[] |
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `signals$` | { [P in string \| number \| symbol]: ReadonlySignal<T[P]\> } | an array of signals to observe. |
+
+#### Returns
+
+[`ReadonlySignal`](README.md#readonlysignal)<`T`[`number`]\>
+
+a new signal that emits whenever one of the source signals emits.
+
+#### Defined in
+
+node_modules/@cdellacqua/signals/dist/composition.d.ts:35
+
+___
+
+### deriveSignal
+
+▸ **deriveSignal**<`T`, `U`\>(`signal$`, `transform`): [`ReadonlySignal`](README.md#readonlysignal)<`U`\>
+
+Create a signal that emits whenever the passed signal emits. The original
+emitted value gets transformed by the passed function and the result gets
+emitted.
+
+Example:
+```ts
+const signal$ = makeSignal<number>();
+const derived$ = deriveSignal(signal$, (n) => n + 100);
+derived$.subscribe((v) => console.log(v));
+signal$.emit(3); // will trigger console.log, echoing 103
+```
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+| `U` |
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `signal$` | [`ReadonlySignal`](README.md#readonlysignal)<`T`\> | a signal. |
+| `transform` | (`data`: `T`) => `U` | a transformation function. |
+
+#### Returns
+
+[`ReadonlySignal`](README.md#readonlysignal)<`U`\>
+
+a new signal that will emit the transformed data.
+
+#### Defined in
+
+node_modules/@cdellacqua/signals/dist/composition.d.ts:18
+
+___
+
+### makeDerivedStore
+
+▸ **makeDerivedStore**<`TIn`, `TOut`\>(`readonlyStore`, `map`, `config?`): [`ReadonlyStore`](README.md#readonlystore)<`TOut`\>
+
+Create a derived store.
+
+Example usage:
+```ts
+const source$ = makeStore(10);
+const derived$ = makeDerivedStore(source$, (v) => v * 2);
+source$.subscribe((v) => console.log(v)); // prints 10
+derived$.subscribe((v) => console.log(v)); // prints 20
+source$.set(16); // triggers both console.logs, printing 16 and 32
+```
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `TIn` |
+| `TOut` |
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `readonlyStore` | [`ReadonlyStore`](README.md#readonlystore)<`TIn`\> | a store or readonly store. |
+| `map` | (`value`: `TIn`) => `TOut` | a function that takes the current value of the source store and maps it to another value. |
+| `config?` | [`DerivedStoreConfig`](README.md#derivedstoreconfig)<`TOut`\> | a [DerivedStoreConfig](README.md#derivedstoreconfig) which contains configuration information such as a value comparator to avoid needless notifications to subscribers. |
+
+#### Returns
+
+[`ReadonlyStore`](README.md#readonlystore)<`TOut`\>
+
+#### Defined in
+
+node_modules/universal-stores/dist/composition.d.ts:37
+
+▸ **makeDerivedStore**<`TIn`, `TOut`\>(`readonlyStores`, `map`, `config?`): [`ReadonlyStore`](README.md#readonlystore)<`TOut`\>
+
+Create a derived store from multiple sources.
+
+Example usage:
+```ts
+const source1$ = makeStore(10);
+const source2$ = makeStore(-10);
+const derived$ = makeDerivedStore([source1$, source2$], ([v1, v2]) => v1 + v2);
+source1$.subscribe((v) => console.log(v)); // prints 10
+source2$.subscribe((v) => console.log(v)); // prints -10
+derived$.subscribe((v) => console.log(v)); // prints 0
+source1$.set(11); // prints 11 (first console.log) and 1 (third console.log)
+source2$.set(9); // prints 9 (second console.log) and 20 (third console.log)
+```
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `TIn` | extends `unknown`[] \| [`unknown`, ...unknown[]] |
+| `TOut` | `TOut` |
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `readonlyStores` | { [K in string \| number \| symbol]: ReadonlyStore<TIn[K]\> } | an array of stores or readonly stores. |
+| `map` | (`value`: { [K in string \| number \| symbol]: TIn[K] }) => `TOut` | a function that takes the current value of all the source stores and maps it to another value. |
+| `config?` | [`DerivedStoreConfig`](README.md#derivedstoreconfig)<`TOut`\> | a [DerivedStoreConfig](README.md#derivedstoreconfig) which contains configuration information such as a value comparator to avoid needless notifications to subscribers. |
+
+#### Returns
+
+[`ReadonlyStore`](README.md#readonlystore)<`TOut`\>
+
+#### Defined in
+
+node_modules/universal-stores/dist/composition.d.ts:56
+
+▸ **makeDerivedStore**<`TIn`, `TOut`\>(`readonlyStores`, `map`, `config?`): [`ReadonlyStore`](README.md#readonlystore)<`TOut`\>
+
+Create a derived store from multiple sources.
+
+Example usage:
+```ts
+const source1$ = makeStore(10);
+const source2$ = makeStore(-10);
+const derived$ = makeDerivedStore({v1: source1$, v2: source2$}, ({v1, v2}) => v1 + v2);
+source1$.subscribe((v) => console.log(v)); // prints 10
+source2$.subscribe((v) => console.log(v)); // prints -10
+derived$.subscribe((v) => console.log(v)); // prints 0
+source1$.set(11); // prints 11 (first console.log) and 1 (third console.log)
+source2$.set(9); // prints 9 (second console.log) and 20 (third console.log)
+```
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `TIn` |
+| `TOut` |
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `readonlyStores` | { [K in string \| number \| symbol]: ReadonlyStore<TIn[K]\> } | an array of stores or readonly stores. |
+| `map` | (`value`: { [K in string \| number \| symbol]: TIn[K] }) => `TOut` | a function that takes the current value of all the source stores and maps it to another value. |
+| `config?` | [`DerivedStoreConfig`](README.md#derivedstoreconfig)<`TOut`\> | a [DerivedStoreConfig](README.md#derivedstoreconfig) which contains configuration information such as a value comparator to avoid needless notifications to subscribers. |
+
+#### Returns
+
+[`ReadonlyStore`](README.md#readonlystore)<`TOut`\>
+
+#### Defined in
+
+node_modules/universal-stores/dist/composition.d.ts:79
+
+___
+
 ### makeMediaQueryStore
 
-▸ **makeMediaQueryStore**(`mediaQueryString`): `ReadonlyStore`<`boolean`\>
+▸ **makeMediaQueryStore**(`mediaQueryString`): [`ReadonlyStore`](README.md#readonlystore)<`boolean`\>
 
 Create a boolean ReadonlyStore whose value corresponds to whether or not
 a media query "matches".
@@ -376,19 +998,138 @@ prefersLightTheme$.subscribe(console.log); // will print true or false immediate
 
 #### Returns
 
-`ReadonlyStore`<`boolean`\>
+[`ReadonlyStore`](README.md#readonlystore)<`boolean`\>
 
 a boolean ReadonlyStore
 
 #### Defined in
 
-[utils/media-query.ts:19](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/utils/media-query.ts#L19)
+[src/lib/utils/media-query.ts:19](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/utils/media-query.ts#L19)
+
+___
+
+### makeReadonlyStore
+
+▸ **makeReadonlyStore**<`T`\>(`initialValue`, `start?`): [`ReadonlyStore`](README.md#readonlystore)<`T`\>
+
+Make a store of type T.
+
+Example usage:
+```ts
+let value = 0;
+const store$ = makeReadonlyStore(value, (set) => {
+	value++;
+	set(value);
+});
+console.log(store$.content()); // 1
+store$.subscribe((v) => console.log(v)); // immediately prints 2
+console.log(store$.content()); // 2
+```
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `initialValue` | `undefined` \| `T` | the initial value of the store. |
+| `start?` | [`StartHandler`](README.md#starthandler)<`T`\> | a [StartHandler](README.md#starthandler) that will get called once there is at least one subscriber to this store. |
+
+#### Returns
+
+[`ReadonlyStore`](README.md#readonlystore)<`T`\>
+
+a ReadonlyStore
+
+#### Defined in
+
+node_modules/universal-stores/dist/index.d.ts:144
+
+▸ **makeReadonlyStore**<`T`\>(`initialValue`, `config?`): [`ReadonlyStore`](README.md#readonlystore)<`T`\>
+
+Make a store of type T.
+
+Example usage:
+```ts
+const store$ = makeReadonlyStore({prop: 'some value'}, {
+	comparator: (a, b) => a.prop === b.prop,
+	start: (set) => {
+		// ...
+	},
+});
+```
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `initialValue` | `undefined` \| `T` | the initial value of the store. |
+| `config?` | [`StoreConfig`](README.md#storeconfig)<`T`\> | a [StoreConfig](README.md#storeconfig) which contains configuration information such as a value comparator to avoid needless notifications to subscribers and a [StartHandler](README.md#starthandler). |
+
+#### Returns
+
+[`ReadonlyStore`](README.md#readonlystore)<`T`\>
+
+a ReadonlyStore
+
+#### Defined in
+
+node_modules/universal-stores/dist/index.d.ts:161
+
+▸ **makeReadonlyStore**<`T`\>(`initialValue`, `startOrConfig?`): [`ReadonlyStore`](README.md#readonlystore)<`T`\>
+
+Make a store of type T.
+
+Example usage:
+```ts
+let value = 0;
+const store$ = makeReadonlyStore(value, (set) => {
+	value++;
+	set(value);
+});
+console.log(store$.content()); // 1
+store$.subscribe((v) => console.log(v)); // immediately prints 2
+console.log(store$.content()); // 2
+```
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `initialValue` | `undefined` \| `T` | the initial value of the store. |
+| `startOrConfig?` | [`StartHandler`](README.md#starthandler)<`T`\> \| [`StoreConfig`](README.md#storeconfig)<`T`\> | a [StartHandler](README.md#starthandler) or a [StoreConfig](README.md#storeconfig) which contains configuration information such as a value comparator to avoid needless notifications to subscribers and a [StartHandler](README.md#starthandler). |
+
+#### Returns
+
+[`ReadonlyStore`](README.md#readonlystore)<`T`\>
+
+a ReadonlyStore
+
+#### Defined in
+
+node_modules/universal-stores/dist/index.d.ts:180
 
 ___
 
 ### makeScreenSizeStore
 
-▸ **makeScreenSizeStore**(`__namedParameters`): `ReadonlyStore`<[`ScreenSize`](interfaces/ScreenSize.md)\>
+▸ **makeScreenSizeStore**(`__namedParameters`): [`ReadonlyStore`](README.md#readonlystore)<[`ScreenSize`](interfaces/ScreenSize.md)\>
 
 Creates a store that indicates the screen size based on the width or height of the viewport.
 
@@ -412,10 +1153,154 @@ screenSize$.subscribe(({name}) =>
 
 #### Returns
 
-`ReadonlyStore`<[`ScreenSize`](interfaces/ScreenSize.md)\>
+[`ReadonlyStore`](README.md#readonlystore)<[`ScreenSize`](interfaces/ScreenSize.md)\>
 
 a readonly store
 
 #### Defined in
 
-[viewport/screen.ts:59](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/screen.ts#L59)
+[src/lib/viewport/screen.ts:59](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/screen.ts#L59)
+
+___
+
+### makeSignal
+
+▸ **makeSignal**<`T`\>(): [`Signal`](README.md#signal)<`T`\>
+
+Make a signal of type T.
+
+Example usage:
+```ts
+const signal$ = makeSignal<number>();
+signal$.emit(10);
+```
+Example usage with no data:
+```ts
+const signal$ = makeSignal<void>();
+signal$.emit();
+```
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Returns
+
+[`Signal`](README.md#signal)<`T`\>
+
+a signal.
+
+#### Defined in
+
+node_modules/@cdellacqua/signals/dist/index.d.ts:50
+
+___
+
+### makeStore
+
+▸ **makeStore**<`T`\>(`initialValue`, `start?`): [`Store`](README.md#store)<`T`\>
+
+Make a store of type T.
+
+Example usage:
+```ts
+const store$ = makeStore(0);
+console.log(store$.content()); // 0
+store$.subscribe((v) => console.log(v));
+store$.set(10); // will trigger the above console log, printing 10
+```
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `initialValue` | `undefined` \| `T` | the initial value of the store. |
+| `start?` | [`StartHandler`](README.md#starthandler)<`T`\> | a [StartHandler](README.md#starthandler) that will get called once there is at least one subscriber to this store. |
+
+#### Returns
+
+[`Store`](README.md#store)<`T`\>
+
+a Store
+
+#### Defined in
+
+node_modules/universal-stores/dist/index.d.ts:95
+
+▸ **makeStore**<`T`\>(`initialValue`, `config?`): [`Store`](README.md#store)<`T`\>
+
+Make a store of type T.
+
+Example usage:
+```ts
+const store$ = makeStore(0);
+console.log(store$.content()); // 0
+store$.subscribe((v) => console.log(v));
+store$.set(10); // will trigger the above console log, printing 10
+```
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `initialValue` | `undefined` \| `T` | the initial value of the store. |
+| `config?` | [`StoreConfig`](README.md#storeconfig)<`T`\> | a [StoreConfig](README.md#storeconfig) which contains configuration information such as a value comparator to avoid needless notifications to subscribers and a [StartHandler](README.md#starthandler). |
+
+#### Returns
+
+[`Store`](README.md#store)<`T`\>
+
+a Store
+
+#### Defined in
+
+node_modules/universal-stores/dist/index.d.ts:110
+
+▸ **makeStore**<`T`\>(`initialValue`, `startOrConfig?`): [`Store`](README.md#store)<`T`\>
+
+Make a store of type T.
+
+Example usage:
+```ts
+const store$ = makeStore(0);
+console.log(store$.content()); // 0
+store$.subscribe((v) => console.log(v));
+store$.set(10); // will trigger the above console log, printing 10
+```
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `initialValue` | `undefined` \| `T` | the initial value of the store. |
+| `startOrConfig?` | [`StartHandler`](README.md#starthandler)<`T`\> \| [`StoreConfig`](README.md#storeconfig)<`T`\> | a [StartHandler](README.md#starthandler) or a [StoreConfig](README.md#storeconfig) which contains configuration information such as a value comparator to avoid needless notifications to subscribers and a [StartHandler](README.md#starthandler). |
+
+#### Returns
+
+[`Store`](README.md#store)<`T`\>
+
+a Store
+
+#### Defined in
+
+node_modules/universal-stores/dist/index.d.ts:125

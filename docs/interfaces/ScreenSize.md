@@ -25,7 +25,7 @@ Index of the breakpoint, from 0 (lower threshold) to n. of names - 1.
 
 #### Defined in
 
-[viewport/screen.ts:17](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/screen.ts#L17)
+[src/lib/viewport/screen.ts:17](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/screen.ts#L17)
 
 ___
 
@@ -37,7 +37,7 @@ A name that identifies the screen size (e.g. 'sm', 'md', 'lg', ...).
 
 #### Defined in
 
-[viewport/screen.ts:21](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/screen.ts#L21)
+[src/lib/viewport/screen.ts:21](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/screen.ts#L21)
 
 ___
 
@@ -49,4 +49,4 @@ A value in pixel.
 
 #### Defined in
 
-[viewport/screen.ts:19](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/screen.ts#L19)
+[src/lib/viewport/screen.ts:19](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/screen.ts#L19)

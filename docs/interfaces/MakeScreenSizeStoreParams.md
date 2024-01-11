@@ -22,7 +22,7 @@
 
 #### Defined in
 
-[viewport/screen.ts:30](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/screen.ts#L30)
+[src/lib/viewport/screen.ts:30](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/screen.ts#L30)
 
 ___
 
@@ -34,7 +34,7 @@ ___
 
 #### Defined in
 
-[viewport/screen.ts:26](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/screen.ts#L26)
+[src/lib/viewport/screen.ts:26](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/screen.ts#L26)
 
 ___
 
@@ -46,7 +46,7 @@ ___
 
 #### Defined in
 
-[viewport/screen.ts:34](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/screen.ts#L34)
+[src/lib/viewport/screen.ts:34](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/screen.ts#L34)
 
 ___
 
@@ -58,7 +58,7 @@ ___
 
 #### Defined in
 
-[viewport/screen.ts:32](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/screen.ts#L32)
+[src/lib/viewport/screen.ts:32](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/screen.ts#L32)
 
 ___
 
@@ -70,4 +70,4 @@ A list of thresholds that will be used to determine the current screen size.
 
 #### Defined in
 
-[viewport/screen.ts:28](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/screen.ts#L28)
+[src/lib/viewport/screen.ts:28](https://github.com/cdellacqua/browser-ui-stores.js/blob/main/src/lib/viewport/screen.ts#L28)
