@@ -3,4 +3,4 @@ export * from './body';
 export * from './document';
 export * from './viewport';
 export * from './utils';
-export * from 'universal-stores';
+export type {Subscriber, Unsubscribe, ReadonlyStore} from 'universal-stores';
